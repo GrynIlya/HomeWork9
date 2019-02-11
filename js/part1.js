@@ -1,28 +1,14 @@
-function sum(){
-  console.log(arguments);
-  let summ = 0;
-  for (var i = 1; i < arguments.length; i++) {
-   summ += arguments[i];
-  }
-  console.log(summ);
-  return summ;
-}
-function multip(){
-  let mul = 1;
-  for (var i = 1; i < arguments.length; i++) {
-   mul *= arguments[i]; 
-  }
-  console.log(mul);
-  return mul;
+function applyAll(func,...rest) {
+    return func(rest);
 }
 
-
-function applyAll(...rest){
-  if ( arguments[0] == sum ) {
-   sum.apply(applyAll, arguments);
-  } else {
-    multip.apply(applyAll, arguments);
-  }
+let getSum=(array)=>{
+    return array.reduce((sum,addend) => (sum + addend));
 }
 
-applyAll(multip, 1,2,3);
+let getMultiply = (array) =>{
+    return array.reduce((sum,addend) => (sum * addend));
+}
+
+console.log(applyAll(getSum,1,2,3));
+console.log(applyAll(getMultiply,1,2,3,4));
